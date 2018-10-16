@@ -40,19 +40,25 @@ int TSet::GetMaxPower(void) const // получить макс. к-во эл-т�
 int TSet::IsMember(const int Elem) const // элемент множества?
 {
 	if ((Elem < 0) || (Elem >= MaxPower))
-		throw "Incorrect value";
-	return BitField.GetBit(Elem);
+	throw "Incorrect value";
+
+	if (BitField.GetBit(Elem))
+		return 1;
+	return 0;
 }
 
 void TSet::InsElem(const int Elem) // включение элемента множества
 {
 	if ((Elem < 0) || (Elem >= MaxPower))
 		throw "Incorrect value";
-	BitField.ClrBit(Elem);
+	BitField.SetBit(Elem);
 }
 
 void TSet::DelElem(const int Elem) // исключение элемента множества
 {
+	if ((Elem < 0) || (Elem >= MaxPower))
+		throw "Incorrect value";
+	BitField.ClrBit(Elem);
 }
 
 // теоретико-множественные операции
