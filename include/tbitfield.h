@@ -9,6 +9,10 @@
 #define __BITFIELD_H__
 
 #include <iostream>
+#include <math.h>
+#include <string>
+#include <algorithm>
+
 
 using namespace std;
 
