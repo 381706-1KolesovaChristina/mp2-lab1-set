@@ -7,7 +7,7 @@
 
 #include <iomanip>
 
-// #define USE_SET // Использовать класс TSet,
+ #define USE_SET // Использовать класс TSet,
                 // закоментировать, чтобы использовать битовое поле
 
 #ifndef USE_SET // Использовать класс TBitField
@@ -56,22 +56,22 @@ int main()
 
 int main()
 {
-  int n, m, k, count;
+  int UpLimit, m, k, count, MaxElem; 
 
   setlocale(LC_ALL, "Russian");
   cout << "Тестирование программ поддержки множества" << endl;
   cout << "              Решето Эратосфена" << endl;
   cout << "Введите верхнюю границу целых значений - ";
-  cin  >> n;
-  TSet s(n + 1);
+  cin  >> UpLimit;
+  TSet s(UpLimit + 1);
   // заполнение множества
-  for (m = 2; m <= n; m++)
+  for (m = 2; m <= UpLimit; m++)
     s.InsElem(m);
   // проверка до sqrt(n) и удаление кратных
-  for (m = 2; m * m <= n; m++)
+  for (m = 2; m * m <= UpLimit; m++)
     // если м в s, удаление кратных
     if (s.IsMember(m))
-      for (k = 2 * m; k <= n; k += m)
+      for (k = 2 * m; k <= UpLimit; k += m)
        if (s.IsMember(k))
          s.DelElem(k);
   // оставшиеся в s элементы - простые числа
@@ -79,7 +79,7 @@ int main()
   cout << endl << "Печать простых чисел" << endl;
   count = 0;
   k = 1;
-  for (m = 2; m <= n; m++)
+  for (m = 2; m <= UpLimit; m++)
     if (s.IsMember(m))
     {
       count++;
@@ -88,7 +88,20 @@ int main()
         cout << endl;
     }
   cout << endl;
-  cout << "В первых " << n << " числах " << count << " простых" << endl;
+  cout << "В первых " << UpLimit << " числах " << count << " простых" << endl;
+
+	cout << "Ввод множества целых чисел";
+	cout << "Введите наибольший элемент множества\n";
+	cin >> MaxElem;
+	TSet bit(MaxElem + 1);
+	cout << "Введите элементы множества. Для завершения ввода введите -1 или число более максимального\n";
+	cin >> bit;
+	cout << "Ваше множество в представлении битовой строки";
+	cout << bit;
+	cout << "Ваше множество в целых числах";
+	for (m = 0; m <= MaxElem; m++)
+		if (bit.IsMember(m))
+			cout << setw(3) << m << " ";
 }
 
 #endif
