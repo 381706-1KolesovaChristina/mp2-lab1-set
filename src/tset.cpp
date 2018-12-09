@@ -113,7 +113,7 @@ TSet TSet::operator*(const TSet &s) // пересечение
 	if (s.maxPower > maxPower)
 		len = s.maxPower;
 	TSet tmp(len);
-	tmp.BitFiled = bitField & s.bitField;
+	tmp.bitFiled = bitField & s.bitField;
 	return tmp;
 }
 // ---------------------------------------------------------------------------
