@@ -5,16 +5,19 @@
 //
 // Множество
 
-#ifndef __SET_H__
-#define __SET_H__
+#pragma once
 
 #include "tbitfield.h"
 
 class TSet
 {
+	friend istream &operator>>(istream &istr, TSet &bf);
+	friend ostream &operator<<(ostream &ostr, const TSet &bf);
+
 private:
   int maxPower;       // максимальная мощность множества
   TBitField bitField; // битовое поле для хранения характеристического вектора
+
 public:
   TSet(int mp);
   TSet(const TSet &s);       // конструктор копирования
@@ -36,8 +39,5 @@ public:
   TSet operator+ (const TSet &s);  // объединение
   TSet operator* (const TSet &s);  // пересечение
   TSet operator~ (void);           // дополнение
-
-  friend istream &operator>>(istream &istr, TSet &bf);
-  friend ostream &operator<<(ostream &ostr, const TSet &bf);
 };
-#endif
+
